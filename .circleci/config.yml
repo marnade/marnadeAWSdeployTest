@@ -1,13 +1,8 @@
 version: 2.1
 
 jobs:
-  sayhelloWorld:
-    description: A job that says Hello
-    machine: true
-    steps:
-      - run: echo "Hello World!"
-  sayhelloWithParams:
-    description: A job that says Hello
+  sayAllHello:
+    description: A job that says mutiple Hello
     parameters:
       saywhat:
         description: "To whom shall we say hello?"
@@ -15,13 +10,11 @@ jobs:
         type: string
     machine: true
     steps:
+      - run: echo "Hello World!"
       - run: echo "Hello << parameters.saywhat >>"
-
+      - run: echo "Hello Everyone!"
 workflows:
   monWorkflow:
     jobs:
-      - sayhelloWithParams:
+      - sayAllHello:
           saywhat: Intégration Web
-      - sayhelloWorld
-      - sayhelloWithParams:
-          saywhat: Everyone
