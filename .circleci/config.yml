@@ -48,8 +48,8 @@ workflows:
           requires:
             - deploy_backend
       - deploy_staging:
-        requires:
-          - integration_tests_backend
+          requires:
+            - integration_tests_backend
       - acceptance_tests_1:
           requires:
             - deploy_staging
