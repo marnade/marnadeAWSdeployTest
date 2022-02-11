@@ -1,20 +1,14 @@
 version: 2.1
 
 jobs:
-  sayAllHello:
-    description: A job that says mutiple Hello
-    parameters:
-      saywhat:
-        description: "To whom shall we say hello?"
-        default: "World"
-        type: string
+  checkoutAndTest:
     machine: true
     steps:
-      - run: echo "Hello World!"
-      - run: echo "Hello << parameters.saywhat >>"
-      - run: echo "Hello Everyone!"
+      - checkout
+      - run: node --version # <- won't work
+      - run: npm install
+      - run: npm run test
 workflows:
-  monWorkflow:
+  build:
     jobs:
-      - sayAllHello:
-          saywhat: Intégration Web
+      - checkoutAndTest
